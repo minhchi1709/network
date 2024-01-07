@@ -1,0 +1,109 @@
+body {
+    font-family: sans-serif;
+}
+
+.compose-container {
+    margin-left: 1%;
+    margin-right: 1%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 6%;
+}
+
+.post-container {
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 20px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 1% 1% 1% 1%;
+}
+
+#all-posts{
+    margin-left: 1%;
+}
+
+.title{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+.compose-area {
+    border: 1px solid grey;
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 5px;
+}
+
+.content-area {
+    width: 99%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border: none;
+    color: black;
+    padding: 3px 3px 3px 3px;
+}
+
+.comment-area {
+    border: 1px solid grey;
+    width: 99%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 5px;
+    padding-left: 5px;
+    height: auto;
+}
+
+#post-button {
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.datetime {
+    color: grey;
+    margin-left: 1%;
+}
+
+.edit {
+    border: none;
+}
+
+.comment {
+    border: none;
+}
+
+.like{
+    border: none;
+    margin-left: 1%;
+}
+
+.user{
+    color: black;
+}
+
+.username, .followers, .follow {
+    margin-left: 1%;
+}
+
+.next {
+    margin-top: 10px;
+    position: absolute;
+    right: 10px;
+    margin-bottom: 10px;
+}
+
+.previous {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.save{
+    display: 'none';
+}
+
+.addcomment {
+    display :'none';
+}

@@ -1,0 +1,90 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <h2 id="all-posts" class="font-weight-bold">All Posts</h2>
+    <div class="compose-container">
+        <h5 class="title font-weight-bold">New Post</h5>
+        <form action="{% url 'post' %}" method="post">
+            {% csrf_token %}
+            <textarea class="compose-area" rows="4" name="content" required></textarea>
+            <button type="submit" class="btn btn-primary" id="post-button">Post</button>
+        </form>
+    </div>
+
+    {% for page in pages %}
+        {% if page.page == 0 %}
+        <div class="page-container" id="{{ page.page }}">
+            {% for post in page.posts %}
+                <div class="post-container">
+                <h5 class="title font-weight-bold"><a href="{% url 'user' post.post.poster.id %}" class="user">{{ post.post.poster }}</a></h5>
+                {% if post.post.poster == user %}
+                <buton class="edit btn btn-outline-primary" id="{{ post.post.id }}-edit">Edit</buton>
+                <buton class="save btn btn-outline-primary" id="{{ post.post.id }}-save" style="display: none">Save</buton><br>
+                {% endif %}
+                <textarea class="content-area" id="{{ post.post.id }}-content" disabled>{{ post.post.content }}</textarea>
+                <span class="datetime">{{ post.post.datetime }}</span><br>
+                <span class="like">&#129505;<span id="{{ post.post.id }}-likes">{{ post.likes }}</span></span><br>
+                {% if post.liked %}
+                <button class="like btn btn-outline-primary" id="{{ post.post.id }}-unlike">Unlike</button>
+                {% else %}
+                <button class="like btn btn-outline-primary" id="{{ post.post.id }}-like">Like</button>
+                {% endif %}
+                <button class="btn btn-outline-secondary addcomment" id="{{ post.post.id }}-addcomment" style="display: none;">Add Comment</button>
+                <button class="btn btn-outline-secondary comment" id="{{ post.post.id }}-comment">Comment</button><br>
+                <textarea class="comment-area" rows="1" cols="99" disabled style="display: none">
+                    
+                </textarea>
+                {% for comment in post.comments %}
+                <textarea class="comment-area" rows="1" disabled>
+                    {{ comment.commenter }}: {{ comment.comment }}
+                </textarea>
+                {% endfor %}
+                </div>
+            {% endfor %}
+            <button class="next btn btn-primary" id="{{ page.page }}-next">Next</button>
+        </div>
+        {% else %}
+            
+            <div class="page-container" id="{{ page.page }}" style="display: none;">
+            {% for post in page.posts %}
+                <div class="post-container">
+                <h5 class="title font-weight-bold"><a href="{% url 'user' post.post.poster.id %}" class="user">{{ post.post.poster }}</a></h5>
+                {% if post.post.poster == user %}
+                <buton class="edit btn btn-outline-primary" id="{{ post.post.id }}-edit">Edit</buton>
+                <buton class="save btn btn-outline-primary" id="{{ post.post.id }}-save" style="display: none">Save</buton><br>
+                {% endif %}
+                <textarea class="content-area" id="{{ post.post.id }}-content" disabled>{{ post.post.content }}</textarea>
+                <span class="datetime">{{ post.post.datetime }}</span><br>
+                <span class="like">&#129505;<span id="{{ post.post.id }}-likes">{{ post.likes }}</span></span><br>
+                {% if post.liked %}
+                <button class="like btn btn-outline-primary" id="{{ post.post.id }}-unlike">Unlike</button>
+                {% else %}
+                <button class="like btn btn-outline-primary" id="{{ post.post.id }}-like">Like</button>
+                {% endif %}
+                <button class="btn btn-outline-secondary addcomment" id="{{ post.post.id }}-addcomment" style="display: none;">Add Comment</button>
+                <button class="btn btn-outline-secondary comment" id="{{ post.post.id }}-comment">Comment</button><br>
+                <textarea class="comment-area" rows="1" cols="99" disabled style="display: none">
+                    
+                </textarea>
+                {% for comment in post.comments %}
+                <textarea class="comment-area" rows="1" disabled>
+                    {{ comment.commenter }}: {{ comment.comment }}
+                </textarea>
+                {% endfor %}
+                </div>
+            {% endfor %}
+                {% if page.page == end %}
+                <button class="btn btn-primary previous" id="{{ page.page }}-previous">Previous</button>
+                {% else %}
+                <button class="next btn btn-primary" id="{{ page.page }}-next">Next</button>
+                <button class="previous btn btn-primary" id="{{ page.page }}-previous">Previous</button>
+                {% endif %}
+            </div>
+            
+        {% endif %}
+        </div>
+    {% empty %}
+    <h5 class="title font-weight-bold">No Posts</h5>
+    {% endfor %}
+    <hr>
+{% endblock %}
